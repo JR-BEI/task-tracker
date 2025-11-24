@@ -1,0 +1,44 @@
+# CLAUDE.md - Task Tracker
+
+## Project Overview
+A simple task tracking app to learn Claude Code patterns: sub-agents, MCPs, and controlled UX.
+
+## Tech Stack
+- **Frontend:** React 18 + TypeScript (strict) + Vite
+- **Styling:** CSS (we'll add Tailwind later if needed)
+- **Testing:** Playwright (e2e)
+
+## File Structure
+```
+/
+├── CLAUDE.md              ← Global agent (you are here)
+├── SESSION.md             ← Session continuity
+├── src/
+│   ├── features/          ← Domain features (each gets a sub-agent)
+│   │   └── tasks/         ← Task management feature
+│   ├── components/        ← Shared UI components
+│   └── App.tsx            ← Main app component
+└── tests/
+    └── e2e/               ← Playwright tests
+```
+
+## Conventions
+- **Components:** PascalCase, one per file (`TaskCard.tsx`)
+- **Hooks:** camelCase with `use` prefix (`useTaskState.ts`)
+- **Types:** PascalCase (`TaskStatus`)
+- **Test IDs:** `data-testid="feature-element"` (e.g., `task-card`, `task-submit-btn`)
+
+## State Machine Pattern
+Every interactive component defines its states BEFORE implementation:
+- What states can it be in?
+- What triggers transitions?
+
+## Working With Me
+- Speed over perfection - ship it, iterate
+- Small focused changes
+- Ask before big refactors
+- "Just make it work" = skip edge cases for now
+
+## Current Focus
+- Setting up project structure
+- Learning agent patterns
