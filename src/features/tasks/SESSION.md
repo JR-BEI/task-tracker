@@ -1,36 +1,132 @@
 # SESSION.md
 
-## Current Session
+## Last Session
 **Date:** November 23, 2025
-**Goal:** Set up project structure and learn agent patterns
+**Goal:** Plan multi-page routing and database connection
 
 ---
 
-## What We've Done
-- Created Vite + React + TypeScript project
-- Added CLAUDE.md (global agent)
-- Added tasks sub-agent at src/features/tasks/CLAUDE.md
-- ✅ Built TaskForm component with:
-  - Title input field
-  - Submit button
-  - All required test IDs (task-form, task-title-input, task-submit-btn)
-  - Form validation and auto-reset
-  - CSS styling
-- ✅ Integrated TaskForm into App.tsx
-- ✅ Tested with Playwright MCP:
-  - Verified component renders correctly
-  - Confirmed all test IDs are present
-  - Tested form submission flow
-  - Verified form reset after submit
+## Project Status
 
-## What's Next
-1. Build TaskCard component to display individual tasks
-2. Build TaskList component to display tasks by status
-3. Build TaskBoard component (Kanban board with TODO/DOING/DONE columns)
-4. Add state management for tasks
+### Completed
+- ✅ Vite + React + TypeScript project setup
+- ✅ Playwright MCP installed
+- ✅ Deployed to Vercel: https://task-tracker-azure-ten.vercel.app/
+- ✅ Global agent (CLAUDE.md) created
+- ✅ Tasks sub-agent created with full spec
+- ✅ TaskForm component built and tested
+- ✅ GitHub repo: https://github.com/JR-BEI/task-tracker
 
-## Context for Claude
-- TaskForm is complete and tested
-- Dev server running at http://localhost:5173/
-- Playwright MCP configured and working
-- Ready to build display components next
+### Planned (Ready to Build)
+- 🔲 React Router setup (3 pages)
+- 🔲 Supabase database connection
+- 🔲 NavBar component
+- 🔲 TaskCard with status buttons
+- 🔲 TaskBoard (3 columns)
+- 🔲 TaskDetailPage (edit form)
+- 🔲 DashboardPage (stats)
+- 🔲 Modal for new task
+
+---
+
+## Architecture Decided
+
+### Pages
+| Page | Route | Purpose |
+|------|-------|---------|
+| Home | `/` | Task board with 3 columns |
+| Task Detail | `/tasks/:id` | View & edit single task |
+| Dashboard | `/dashboard` | Stats and progress |
+
+### Database (Supabase)
+```sql
+tasks
+├── id (uuid, primary key)
+├── title (text, required)
+├── description (text, optional)
+├── status ('TODO' | 'DOING' | 'DONE')
+├── created_at (timestamp)
+└── updated_at (timestamp)
+```
+
+### UX Decisions
+- Status changes directly on cards (quick)
+- New task via modal (don't leave page)
+- Edit task on separate detail page
+- Delete only on detail page with confirm
+- Optimistic updates for status changes
+
+---
+
+## Next Session: Build Order
+
+### Phase 1: Routing & Layout
+1. Install React Router
+2. Create page components (empty shells)
+3. Create NavBar with links
+4. Verify navigation works
+
+### Phase 2: Supabase Setup
+1. Create Supabase project
+2. Create tasks table
+3. Install Supabase client
+4. Create API helper functions
+5. Test connection
+
+### Phase 3: Build Components
+1. TaskCard (with status buttons)
+2. TaskColumn
+3. TaskBoard
+4. Wire up to Supabase
+
+### Phase 4: Detail Page
+1. TaskDetailPage with edit form
+2. Save/Delete functionality
+3. Back navigation
+
+### Phase 5: Dashboard
+1. StatCard component
+2. ProgressBar component
+3. DashboardPage layout
+4. Wire up stats
+
+### Phase 6: Polish
+1. Loading states (skeletons)
+2. Error handling
+3. Modal for new task
+4. Playwright tests
+
+---
+
+## Commands
+
+```bash
+# Start dev server
+npm run dev
+
+# Run Playwright tests
+npx playwright test
+
+# View test report
+npx playwright show-report
+
+# Check MCP status
+claude mcp list
+```
+
+---
+
+## How to Start
+
+Open Claude Code:
+```bash
+cd ~/projects/task-tracker
+claude
+```
+
+Then say:
+```
+Read CLAUDE.md and SESSION.md, and the tasks sub-agent at src/features/tasks/CLAUDE.md. 
+
+Let's start Phase 1: Install React Router and create the basic page structure with NavBar. Follow the routes defined in the sub-agent.
+```
