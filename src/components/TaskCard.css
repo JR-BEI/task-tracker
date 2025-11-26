@@ -72,3 +72,17 @@
   background: #0056b3;
   border-color: #0056b3;
 }
+
+.task-card-dragging {
+  cursor: grabbing;
+}
+
+.task-card {
+  cursor: grab;
+}
+
+.task-card-overlay {
+  pointer-events: none;
+  transform: rotate(5deg);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}

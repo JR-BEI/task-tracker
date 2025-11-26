@@ -1,6 +1,7 @@
 import type { Task, TaskStatus } from '../types/task'
 import { TaskCard } from './TaskCard'
 import './TaskColumn.css'
+import { useDroppable } from '@dnd-kit/core'
 
 interface TaskColumnProps {
   status: TaskStatus
@@ -21,10 +22,17 @@ const statusTestIds: Record<TaskStatus, string> = {
 }
 
 export function TaskColumn({ status, tasks, onStatusChange }: TaskColumnProps) {
+  const { setNodeRef, isOver } = useDroppable({
+    id: status,
+  })
+
   return (
     <div
+      ref={setNodeRef}
       data-testid={statusTestIds[status]}
-      className={`task-column task-column-${status.toLowerCase()}`}
+      className={`task-column task-column-${status.toLowerCase()} ${
+        isOver ? 'task-column-over' : ''
+      }`}
     >
       <div className="task-column-header">
         <h2>{statusLabels[status]}</h2>
