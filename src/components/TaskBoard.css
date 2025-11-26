@@ -1,13 +1,13 @@
 .task-board {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  height: calc(100vh - 200px);
   min-height: 500px;
 }
 
 .loading-state,
 .error-state {
-  flex: 1;
+  grid-column: 1 / -1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,9 +19,18 @@
   color: #dc3545;
 }
 
+/* Tablet: 2 columns */
 @media (max-width: 1024px) {
   .task-board {
-    flex-direction: column;
-    height: auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 640px) {
+  .task-board {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }

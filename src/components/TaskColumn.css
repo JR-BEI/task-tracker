@@ -1,11 +1,12 @@
 .task-column {
-  flex: 1;
-  min-width: 300px;
-  background: #f8f9fa;
-  border-radius: 8px;
-  padding: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .task-column-header {

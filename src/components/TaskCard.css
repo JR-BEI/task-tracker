@@ -4,12 +4,13 @@
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 0.75rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
 }
 
 .task-card:hover {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
 .task-card-title {
@@ -45,18 +46,20 @@
 .status-btn {
   flex: 1;
   padding: 0.375rem;
-  border: 1px solid #ddd;
-  background: white;
+  border: 2px solid #cbd5e0;
+  background: #f7fafc;
   border-radius: 4px;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  color: #4a5568;
 }
 
 .status-btn:hover {
-  background: #f5f5f5;
-  border-color: #999;
+  background: #edf2f7;
+  border-color: #a0aec0;
+  color: #2d3748;
 }
 
 .status-btn.active {
