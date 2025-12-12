@@ -8,7 +8,7 @@ import './TaskDetailPage.css'
 export function TaskDetailPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const { tasks, updateTask, deleteTask } = useTasksContext()
+  const { tasks, fetchTask, updateTask, deleteTask } = useTasksContext()
 
   const [task, setTask] = useState<Task | null>(null)
   const [loading, setLoading] = useState(true)
@@ -16,12 +16,26 @@ export function TaskDetailPage() {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
 
   useEffect(() => {
-    if (id) {
-      const foundTask = tasks.find(t => t.id === id)
+    async function loadTask() {
+      if (!id) return
+
+      setLoading(true)
+
+      // First check if task is in context
+      let foundTask = tasks.find(t => t.id === id)
+
+      // If not in context, fetch from database
+      if (!foundTask) {
+        const fetchedTask = await fetchTask(id)
+        foundTask = fetchedTask || undefined
+      }
+
       setTask(foundTask || null)
       setLoading(false)
     }
-  }, [id, tasks])
+
+    loadTask()
+  }, [id, tasks, fetchTask])
 
   const handleSave = async (title: string, description: string, status: TaskStatus) => {
     if (!task) return

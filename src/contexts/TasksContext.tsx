@@ -8,6 +8,7 @@ interface TasksContextType {
   loading: boolean
   error: string | null
   fetchTasks: () => Promise<void>
+  fetchTask: (id: string) => Promise<Task | null>
   createTask: (input: CreateTaskInput) => Promise<Task | null>
   updateTask: (id: string, input: UpdateTaskInput) => Promise<Task | null>
   deleteTask: (id: string) => Promise<boolean>

@@ -33,6 +33,25 @@ export function useTasks() {
     }
   }
 
+  async function fetchTask(id: string): Promise<Task | null> {
+    try {
+      setError(null)
+
+      const { data, error: fetchError } = await supabase
+        .from('tasks')
+        .select('*')
+        .eq('id', id)
+        .single()
+
+      if (fetchError) throw fetchError
+
+      return data
+    } catch (err) {
+      console.error('Error fetching task:', err)
+      return null
+    }
+  }
+
   async function createTask(input: CreateTaskInput): Promise<Task | null> {
     try {
       setError(null)
@@ -128,6 +147,7 @@ export function useTasks() {
     loading,
     error,
     fetchTasks,
+    fetchTask,
     createTask,
     updateTask,
     deleteTask,
