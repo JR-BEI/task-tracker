@@ -1,0 +1,35 @@
+{
+  "name": "Task Tracker",
+  "baseUrl": "https://task-tracker-azure-ten.vercel.app",
+  "routes": {
+    "home": "/",
+    "dashboard": "/dashboard",
+    "detail": "/tasks/:id"
+  },
+  "actions": {
+    "createItem": {
+      "trigger": "+ New Task",
+      "fields": ["title", "description", "status"],
+      "submit": "Create Task"
+    },
+    "moveItem": {
+      "method": "drag",
+      "columns": ["TODO", "DOING", "DONE"]
+    },
+    "deleteItem": {
+      "location": "detail page",
+      "confirm": true
+    }
+  },
+  "selectors": {
+    "board": "[data-testid='task-board']",
+    "column": "[data-testid^='column-']",
+    "card": "[data-testid='task-card']",
+    "newButton": "[data-testid='new-task-btn']",
+    "modal": "[data-testid='new-task-modal']"
+  },
+  "performance": {
+    "loadThreshold": 3000,
+    "actionThreshold": 2000
+  }
+}
